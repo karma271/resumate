@@ -2,7 +2,7 @@
 
 // ── Internal footer ───────────────────────────────────────────────────────────
 
-#let __resume_footer(author, language, lang_data, date, use-smallcaps: true) = {
+#let __resume_footer(author, language, date, use-smallcaps: true) = {
   set text(fill: gray, size: 8pt)
   __justify_align_3[
     #__apply_smallcaps(date, use-smallcaps)
@@ -10,7 +10,7 @@
     #__apply_smallcaps(
       {
         let name = __format_author_name(author, language)
-        name + " · " + linguify("resume", from: lang_data)
+        name + " · Résumé"
       },
       use-smallcaps,
     )
@@ -87,10 +87,8 @@
 ) = {
   if type(accent-color) == str { accent-color = rgb(accent-color) }
 
-  let lang_data = toml("lang.toml")
-
   let desc = if description == none {
-    lflib._linguify("resume", lang: language, from: lang_data).ok + " " + author.firstname + " " + author.lastname
+    "Résumé " + author.firstname + " " + author.lastname
   } else {
     description
   }
@@ -98,7 +96,7 @@
   show: body => context {
     set document(
       author: author.firstname + " " + author.lastname,
-      title: lflib._linguify("resume", lang: language, from: lang_data).ok,
+      title: "Résumé",
       description: desc,
       keywords: keywords,
     )
@@ -117,7 +115,7 @@
       bottom: if show-footer { 12mm } else { 8mm },
     ),
     footer: if show-footer [
-      #__resume_footer(author, language, lang_data, date, use-smallcaps: use-smallcaps)
+      #__resume_footer(author, language, date, use-smallcaps: use-smallcaps)
     ] else [],
     footer-descent: 35%,
   )
