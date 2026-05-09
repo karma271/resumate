@@ -1,4 +1,4 @@
-#import "../template_modern_cv/lib.typ": *
+#import "../lib/lib_resume.typ": *
 
 = SKILLS
 
