@@ -9,3 +9,6 @@
 # Typst compiled output
 *.pdf
 
+
+memory/
+

@@ -1,4 +1,4 @@
-#import "template_modern_cv/lib.typ": *
+#import "lib/lib_resume.typ": *
 
 // ── Debug grid: flip to true to overlay an alignment grid ──────────────
 #let show-debug-grid = false

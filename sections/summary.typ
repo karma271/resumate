@@ -1,4 +1,4 @@
-#import "../template_modern_cv/lib.typ": *
+#import "../lib/lib_resume.typ": *
 
 #resume-summary[
   Data Scientist with 10+ years driving business impact through ML, optimization, causal inference and GenAI. Hands-on builder
