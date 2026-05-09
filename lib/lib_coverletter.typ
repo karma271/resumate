@@ -5,7 +5,7 @@
 
 // ── Internal footer ───────────────────────────────────────────────────────────
 
-#let __coverletter_footer(author, language, date, lang_data, use-smallcaps: true) = {
+#let __coverletter_footer(author, language, date, use-smallcaps: true) = {
   set text(fill: gray, size: 8pt)
   __justify_align_3[
     #__apply_smallcaps(date, use-smallcaps)
@@ -13,7 +13,7 @@
     #__apply_smallcaps(
       {
         let name = __format_author_name(author, language)
-        name + " · " + linguify("cover-letter", from: lang_data)
+        name + " · Cover Letter"
       },
       use-smallcaps,
     )
@@ -25,23 +25,18 @@
 // ── Signature & closing defaults ──────────────────────────────────────────────
 
 /// Default "Sincerely, [signature] Name" block.
-#let default-signature(lang-data, language, author, alignment, padding) = {
+#let default-signature(author, alignment, padding) = {
   align(alignment, pad(..padding)[
-    #text(weight: "light")[
-      #linguify("sincerely", from: lang-data)#if (language != "de") [#sym.comma]
-    ] \
+    #text(weight: "light")[Sincerely,] \
     #if ("signature" in author) { author.signature } \
     #text(weight: "bold")[#author.firstname #author.lastname]
   ])
 }
 
 /// Default "Attached: Curriculum Vitae" footer line.
-#let default-closing(lang-data) = {
+#let default-closing() = {
   align(bottom)[
-    #text(weight: "light", style: "italic")[
-      #linguify("attached", from: lang-data)#sym.colon
-      #linguify("curriculum-vitae", from: lang-data)
-    ]
+    #text(weight: "light", style: "italic")[Attached: Curriculum Vitae]
   ]
 }
 
@@ -79,17 +74,15 @@
 ) = {
   if type(accent-color) == str { accent-color = rgb(accent-color) }
 
-  let lang_data = toml("lang.toml")
-
   if signature == none {
-    signature = default-signature(lang_data, language, author, signature-alignment, signature-padding)
+    signature = default-signature(author, signature-alignment, signature-padding)
   }
   if closing == none {
-    closing = default-closing(lang_data)
+    closing = default-closing()
   }
 
   let desc = if description == none {
-    lflib._linguify("cover-letter", lang: language, from: lang_data).ok + " " + author.firstname + " " + author.lastname
+    "Cover Letter " + author.firstname + " " + author.lastname
   } else {
     description
   }
@@ -97,7 +90,7 @@
   show: body => context {
     set document(
       author: author.firstname + " " + author.lastname,
-      title: lflib._linguify("cover-letter", lang: language, from: lang_data).ok,
+      title: "Cover Letter",
       description: desc,
       keywords: keywords,
     )
@@ -116,7 +109,7 @@
       bottom: if show-footer { 12mm } else { 8mm },
     ),
     footer: if show-footer [
-      #__coverletter_footer(author, language, date, lang_data, use-smallcaps: use-smallcaps)
+      #__coverletter_footer(author, language, date, use-smallcaps: use-smallcaps)
     ] else [],
     footer-descent: 35%,
   )
@@ -232,15 +225,12 @@
   padding: (top: 1em, bottom: 1em),
 ) = {
   set par(..default-par)
-  let lang_data = toml("lang.toml")
   underline(evade: false, stroke: 0.5pt, offset: 0.3em)[
-    #text(weight: "bold", size: 12pt)[
-      #linguify("letter-position-pretext", from: lang_data) #job-position
-    ]
+    #text(weight: "bold", size: 12pt)[Job Application for #job-position]
   ]
   pad(..padding)[
     #text(weight: "light", fill: color-gray)[
-      #if dear == "" [#linguify("dear", from: lang_data)] else [#dear]
+      #if dear == "" [Dear] else [#dear]
       #addressee,
     ]
   ]
