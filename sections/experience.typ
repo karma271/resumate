@@ -12,7 +12,7 @@
 
 
 #resume-item[
-  - Developed hierarchical demand forecasting models with cold-start capability using similarity features and embeddings, improving WMAPE by 10–20%, reducing stock-outs, and scaling adoption across Demand Planning, Merchandising, and Supply Chain.
+  - Developed hierarchical demand forecasting models with cold-start capability using similarity features and embeddings, improving WMAPE by 10-20%, reducing stock-outs, and scaling adoption across Demand Planning, Merchandising, and Supply Chain.
   - Built a Gradient Boosted model personalizing in-store return incentives; partnered with Operations and Merchandising to operationalize it, mitigating seasonal value erosion across 93% of digital returns and delivering \$14.3M annualized EBIT.
   - Architected a production RAG pipeline over customer returns data, extracting structured fit, sizing, and style signals at ~80% recall to sharpen product descriptions, inform design and manufacturing decisions, and enrich downstream demand forecasting.
   - Engineered an NLP pipeline using LLMs to extract trend and sentiment signals from fashion and resale media (StockX, industry blogs), generating demand features that strengthened forecasting precision ahead of new product launches.
@@ -29,7 +29,8 @@
 
 #resume-item[
   - Delivered production demand/capacity models for patient-provider scheduling, boosting utilization to 85% and reducing churn risk.
-  - Modeled patient flow with M/M/s queuing and applied constraint programming to optimize scheduling and policy interventions, reducing patient wait times by 30% and improving overall service efficiency.
+  // - Modeled patient flow with M/M/s queuing and applied constraint programming to optimize scheduling and policy interventions, reducing patient wait times by 30% and improving overall service efficiency.
+  - Reduced patient wait times by 30% by modeling flow with M/M/s queuing. Optimized scheduling and policy interventions using GPU-accelerated constraint programming via NVIDIA CuOpt.
   - Developed graph-based segmentation for personalization, improving engagement across cohorts and enabling targeted interventions.
   - Established rigorous MLOps practices—experiment tracking, versioning, and automated evaluation—ensuring reproducible, production-ready model rollouts across scheduling and engagement systems.
 ]
